@@ -56,7 +56,7 @@
     void not_dir(char *str, char *path);
 
     // my_ls
-    void my_ls(char *path, char *file);
+    void my_ls(char *path);
     void my_ls_a(char *path);
     void my_ls_l(char *path);
     int main(int ac, char **av);
