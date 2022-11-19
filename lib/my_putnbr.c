@@ -5,6 +5,8 @@
 ** my_putnbr.c
 */
 
+#include <unistd.h>
+
 void my_putnbr(int nb)
 {
     if (nb < 0) {

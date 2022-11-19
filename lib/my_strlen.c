@@ -2,15 +2,17 @@
 ** EPITECH PROJECT, 2022
 ** CPOOL Function
 ** File description:
-** my_putstr
+** my_strlen.c
 */
 
-void my_putstr(char const *str)
+#include <unistd.h>
+
+int my_strlen(char const *str)
 {
     int i = 0;
 
     while (str[i] != '\0') {
-        my_putchar(str[i]);
         i++;
     }
+    return (i);
 }
