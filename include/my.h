@@ -53,10 +53,10 @@
     int my_strlen(char const *str);
     void my_putnbr(int nb);
     int my_strcmp(char const *s1, char const *s2);
-    void not_dir(char *str, char *path);
+    void no_dir(char *path);
 
     // my_ls
-    void my_ls(char *path);
+    void my_ls(char *filepath);
     void my_ls_a(char *path);
     void my_ls_l(char *path);
     int main(int ac, char **av);
@@ -70,7 +70,8 @@
     int is_file(char *path);
     int is_link(char *path);
     int is_special(char *path);
-    void check_file(char *path, char *file);
+    void stat_file(char *argv[]);
+    void file_exist(char *path, char *argv);
 
     // my_get
     int get_blocks(char *path);
