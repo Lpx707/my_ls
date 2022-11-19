@@ -7,15 +7,13 @@
 
 #include "../include/my.h"
 
+
+
+// Main function for my_ls, my_ls_a, my_ls_l
 int main(int ac, char **av)
 {
-    if (ac == 1)
-        my_ls(".");
-    if (ac == 2 && av[1][0] == '-' && av[1][1] == 'a')
-        my_ls_a(".");
-    if (ac == 2 && av[1][0] != '-')
-        my_ls(av[1]);
-    if (ac == 3 && av[1][0] == '-' && av[1][1] == 'a')
-        my_ls_a(av[2]);
+    ls_flag(ac, av);
+    ls_a_flag(ac, av);
+    //ls_l_flag(ac, av);
     return (0);
 }

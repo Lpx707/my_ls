@@ -2,27 +2,28 @@
 ** EPITECH PROJECT, 2022
 ** my_ls
 ** File description:
-** ls -a
+** ls command
 */
 
 
 #include "../include/my.h"
 
-void my_ls_a(char *path)
+// Get File from path
+
+char *get_file(char *path)
 {
     DIR *d;
-    struct stat info;
     struct dirent *dir;
+    struct stat sb;
+    char *file = NULL;
+
     d = opendir(path);
     if (d) {
         while ((dir = readdir(d)) != NULL) {
-            my_putstr(dir->d_name);
-            my_putchar(' ');
+            stat(dir->d_name, &sb);
+            file = dir->d_name;
         }
         closedir(d);
-        my_putchar('\n');
     }
-    if (d == NULL) {
-        no_dir(path);
-    }
+    return (file);
 }
