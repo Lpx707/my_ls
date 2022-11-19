@@ -54,3 +54,14 @@ dkms.conf
 
 # Script
 *.sh
+
+# Other
+*.bak
+*.swp
+*.zip
+*.tar.gz
+*.tar.bz2
+*.tar.xz
+*.tar
+
+my_ls
