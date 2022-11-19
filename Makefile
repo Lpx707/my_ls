@@ -5,16 +5,18 @@
 ## Makefile
 ##
 
-SRC =	lib/my/my_putchar.c	\
-		lib/my/my_putstr.c	\
-		lib/my/my_strlen.c	\
-		lib/my/my_putnbr.c	\
-		src/error.c	\
-		src/perms.c	\
+SRC =	lib/my_putchar.c	\
+		lib/my_putstr.c	\
+		lib/my_strlen.c	\
+		lib/my_putnbr.c	\
+		lib/my_strcmp.c	\
+		src/flag_conditions.c	\
+		src/my_error.c	\
+		src/my_get.c	\
 		src/switch_param.c	\
-		src/check.c	\
-		src/my_ls.c	\
 		src/my_ls_a.c	\
+		src/my_ls.c	\
+		src/my_ls_l.c	\
 		src/main.c
 
 OBJ = $(SRC:.c=.o)
@@ -33,5 +35,3 @@ fclean: clean
 	rm -f $(NAME)
 
 re: fclean all
-
-##
