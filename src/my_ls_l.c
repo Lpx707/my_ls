@@ -8,8 +8,13 @@
 
 #include "../include/my.h"
 
-int salut()
+void my_ls_l(char *path)
 {
-    my_putstr("salut");
-    return (0);
+    DIR *d;
+    struct stat sb;
+    struct dirent *dir;
+    d = opendir(path);
+    dir = readdir(d);
+
+    
 }

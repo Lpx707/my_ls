@@ -242,26 +242,11 @@ char *get_permissions(char *path)
     return (permissions);
 }
 
-
-
-void check_file(char *path, char *file)
+void stat_file(char *argv[])
 {
-    DIR *d;
-    struct dirent *dir;
-    struct stat sb;
-
-    d = opendir(path);
-    if (d) {
-        while ((dir = readdir(d)) != NULL) {
-            stat(dir->d_name, &sb);
-            if (my_strcmp(dir->d_name, file) == 0) {
-                my_putstr(path);
-                my_putstr("/");
-                my_putstr(file);
-                my_putchar('\n');
-            }
-        }
-        closedir(d);
-    }
+    struct stat s;
+    lstat(argv[1], &s);
+    if (S_ISREG(s.st_mode))
+        printf("%s", s);
 }
 

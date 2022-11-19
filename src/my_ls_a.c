@@ -22,7 +22,5 @@ void my_ls_a(char *path)
         closedir(d);
         my_putchar('\n');
     }
-    if (d == NULL) {
-        no_dir(path);
-    }
+    no_dir(path);
 }
