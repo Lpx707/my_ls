@@ -8,19 +8,27 @@
 
 #include "../include/my.h"
 
-void my_ls_a(char *path)
+
+void my_ls_a(char *av)
 {
-    DIR *d;
-    struct stat info;
-    struct dirent *dir;
-    d = opendir(path);
-    if (d) {
-        while ((dir = readdir(d)) != NULL) {
-            my_putstr(dir->d_name);
-            my_putchar(' ');
-        }
-        closedir(d);
+    DIR *dir;
+    struct dirent *sd;
+    struct stat sb;
+
+    if (stat(av, &sb) == -1) {
+        error_no_such_file(av);
+    }
+    if (S_ISREG(sb.st_mode)) {
+        my_putstr(av);
         my_putchar('\n');
     }
-    no_dir(path);
+    if (S_ISDIR(sb.st_mode)) {
+        dir = opendir(av);
+        while ((sd = readdir(dir)) != NULL) {
+            my_putstr(sd->d_name);
+            my_putchar(' ');
+        }
+        closedir(dir);
+        my_putchar('\n');
+    }
 }

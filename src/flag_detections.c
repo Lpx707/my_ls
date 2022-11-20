@@ -2,11 +2,12 @@
 ** EPITECH PROJECT, 2022
 ** my_ls
 ** File description:
-** flag conditions for ls
+** flag detection
 */
 
 
 #include "../include/my.h"
+
 
 int ls_flag(int ac, char **av)
 {
@@ -25,14 +26,3 @@ int ls_a_flag(int ac, char **av)
         my_ls_a(av[2]);
     return (0);
 }
-
-/*
-int ls_l_flag(int ac, char **av)
-{
-    if (ac == 2 && av[1][0] == '-' && av[1][1] == 'l')
-        my_ls_l(".");
-    if (ac == 3 && av[1][0] == '-' && av[1][1] == 'l')
-        my_ls_l(av[2]);
-    return (0);
-}
-*/

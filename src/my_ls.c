@@ -2,30 +2,29 @@
 ** EPITECH PROJECT, 2022
 ** my_ls
 ** File description:
-** ls.c
+** basic ls command
 */
+
 
 #include "../include/my.h"
 
-#include<stdio.h>
-#include<dirent.h>
 
-
-void my_ls(char *path)
+void my_ls(char *av)
 {
-    DIR *d;
+    DIR *dir = dir = opendir(av);
+    struct dirent *sd;
     struct stat sb;
-    struct dirent *dir;
-    d = opendir(path);
-    if (d) {
-        while ((dir = readdir(d)) != NULL) {
-            if (dir->d_name[0] != '.') {
-                my_putstr(dir->d_name);
-                my_putchar(' ');
-            }
+    if (stat(av, &sb) == -1)
+        error_no_such_file(av);
+    if (S_ISREG(sb.st_mode))
+        print_file(av);
+    if (S_ISDIR(sb.st_mode)) {
+        while ((sd = readdir(dir)) != NULL) {
+            if (sd->d_name[0] != '.')
+                my_putstr(sd->d_name);
+                my_putchar(32);
         }
-        closedir(d);
+        closedir(dir);
         my_putchar('\n');
     }
-    no_dir(path);
 }

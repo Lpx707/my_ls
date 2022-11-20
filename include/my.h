@@ -8,85 +8,85 @@
 #ifndef MY_H_
     #define MY_H_
 
-    #include <stdarg.h>
-    #include <string.h>
-    #include <sys/types.h>
-    #include <sys/sysmacros.h>
-    #include <sys/stat.h>
     #include <unistd.h>
     #include <stdlib.h>
+    #include <stdio.h>
+    #include <sys/types.h>
+    #include <sys/stat.h>
+    #include <fcntl.h>
     #include <dirent.h>
-    #include <time.h>
     #include <pwd.h>
     #include <grp.h>
-    #include <fcntl.h>
-    #include <stdbool.h>
+    #include <time.h>
+    #include <errno.h>
+    #include <string.h>
 
-    typedef struct {
-        char *rights;
-        int nlinks;
-        char *file_master;
-        char *folder_master;
-        int size;
-        char *time;
-        time_t elapsed_time;
-        char *name_file;
-        char *name_low;
-    } ls_info;
+    typedef struct s_list {
+        char *name;
+        char *path;
+        struct s_list *next;
+    } t_list;
 
-    typedef struct {
+    typedef struct s_flags {
         int a;
         int l;
-        int R;
-    } ls_flag1;
-
-    typedef struct {
         int d;
         int r;
         int t;
-    } ls_flag2;
+        int R;
+    } t_flags;
 
-    // lib for my ls
+    typedef struct s_info {
+        char *name;
+        char *path;
+        char *rights;
+        char *user;
+        char *group;
+        char *size;
+        char *date;
+        char *link;
+        int blocks;
+        struct s_info *next;
+    } t_info;
 
+    typedef struct s_max {
+        int max_link;
+        int max_user;
+        int max_group;
+        int max_size;
+        int max_name;
+    } t_max;
+
+    //lib
+    int my_strlen(char const *str);
+    int my_strcmp(char const *s1, char const *s2);
     void my_putchar(char c);
     void my_putstr(char const *str);
-    int my_strlen(char const *str);
-    void my_putnbr(int nb);
-    int my_strcmp(char const *s1, char const *s2);
-    void no_dir(char *path);
+    void my_put_nbr(int nb);
 
-    // my_ls
-    void my_ls(char *filepath);
-    void my_ls_a(char *path);
-    void my_ls_l(char *path);
+    //my_ls
+    int check_file(char *av);
+    int check_dir(char *av);
+    void multiple_d(int ac, char **av);
+    void multiple_f(int ac, char **av);
+    void multiple_fd(int ac, char **av);
     int main(int ac, char **av);
+    int check_flag(char *av);
+    void print_file(char *av);
 
-    // perms
+    //Error
+    void error_no_such_file(char *av);
+
+    // Flag
+    void my_ls_a(char *av);
+    void my_ls(char *av);
+    void stat_file(char *av);
 
 
-    //check
-    char *link_path(char *path, char *name);
-    int is_dir(char *path);
-    int is_file(char *path);
-    int is_link(char *path);
-    int is_special(char *path);
-    void stat_file(char *argv[]);
-    void file_exist(char *path, char *argv);
+    int ls_flag(int ac, char **av);
+    int ls_a_flag(int ac, char **av);
 
-    // my_get
-    int get_blocks(char *path);
-    int get_links(char *path);
-    char *get_user(char *path);
-    char *get_group(char *path);
-    int get_size(char *path);
-    char *get_date(char *path);
-    char *get_name(char *path);
-    char *get_time(char *path);
-    char *get_file_name(char *path);
-    char get_type(char *path);
-    char *get_permissions(char *path);
+    //main
 
-    // Flag conditions
-    int check_flag(char *str);
 
 #endif /* !MY_H_ */
